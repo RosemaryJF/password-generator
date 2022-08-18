@@ -6,13 +6,14 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+//Function to generate password
 function generatePassword() {
+  
   // Arrays for character options for password
   var alphabet = "abcdefghijklmnopqrstuvwxyz";
   var alphabetUppercase = alphabet.toUpperCase();
@@ -26,7 +27,7 @@ function generatePassword() {
   console.log(specialCharacters);
   console.log(userCharChoices);
   
-  //Window prompt to user to pick a password length
+  //Window prompt to user to pick a password length and outcomes if not in desired range
   var passwordLength = window.prompt("Enter the number of characters you want the password to be (between 8-128).");
     console.log(passwordLength);
      
@@ -39,7 +40,8 @@ function generatePassword() {
           window.alert("Your character unit choice was invalid. Please start again")
           return;
         }
-
+  
+  // Variables for window prompts and user choices.
   var lowercase = window.confirm("Do you want to include lowercase letters?");
     if (lowercase === true) {
       console.log("Include lowercase alphabet")
@@ -47,7 +49,7 @@ function generatePassword() {
       else if (lowercase === false) {
         console.log ("Do not include lowercase alphabet");
       }
-
+      
   var uppercase = window.confirm("Do you want to include uppercase letters?");
     if (uppercase === true) {
       console.log("Include uppercase alphabet")
@@ -55,7 +57,7 @@ function generatePassword() {
       else if (uppercase === false) {
         console.log ("Do not include uppercase alphabet");
       }
-
+    
     var numbers = window.confirm("Do you want it to contain numbers?");
     if (numbers === true) {
       console.log("Include numeric characters")
@@ -69,18 +71,21 @@ function generatePassword() {
       console.log("include special characters")
     }
       else if (specialChars === false) {
-        console.log ("Do not include special characters");
+        console.log("Do not include special characters");
       }
 
+  //If statement for when no characters are chosen
   if (!lowercase && !uppercase && !numbers && !specialChars) {
     console.log("Character selection null. Input needed.");
-    window.alert("You must choose characters for your password. Password generation has been cancelled!");
+    window.alert("You must choose characters for your password. Password generation has been cancelled.");
   }
+
+    //Else statements for all character set options
     else if (lowercase && uppercase && numbers && specialChars) {
       userCharChoices = alphabet + alphabetUppercase + numericCharacters + specialCharacters;
-      console.log(userCharChoices);
     }
 
+    // Else statements for 3 character options
     else if (lowercase && uppercase && numbers) {
       userCharChoices = alphabet + alphabetUppercase + numericCharacters;
     }
@@ -101,6 +106,7 @@ function generatePassword() {
       userCharChoices = numericCharacters + specialCharacters;
     }
 
+    // Else statements for 2 character choices
     else if (lowercase && specialChars) {
       userCharChoices = alphabet + specialCharacters;
     }
@@ -121,6 +127,7 @@ function generatePassword() {
       userCharChoices = alphabetUppercase + numericCharacters;
     }
 
+    // Else statements for only 1 character set option
     else if (lowercase) {
       userCharChoices = alphabet;
     }
@@ -137,9 +144,11 @@ function generatePassword() {
       userCharChoices = specialCharacters;
     }
 
+  // Introduction of password var for password input
   var password = [];
     
-  // AskBCS helped me figure out issues with my for loop. Have detailed in README
+  //For loop for randomising password characters based of user character choices.
+  // AskBCS helped me figure out issues with my for loop. Have detailed issues encountered in README.
     for (i = 0; i < passwordLength; i++) {
       var passwordNumbers = Math.floor(Math.random() * userCharChoices.length);
       var passwordChars = userCharChoices.charAt(passwordNumbers);
@@ -147,5 +156,6 @@ function generatePassword() {
       password.push(passwordChars);
   } console.log(password);
 
+  //Joins the password characters and pushes them to the browser page
   return password.join("");
 }
