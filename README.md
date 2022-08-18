@@ -43,7 +43,7 @@ Once you've made your choices the randomly generated password will appear in the
 
 To view the deployed application just follow the link below!
 
-INSERT GITHUB LINK
+* [https://rosemaryjf.github.io/password-generator/](https://rosemaryjf.github.io/password-generator/)
 
 ---
 
@@ -66,7 +66,7 @@ In addition to this I sought help to resolve my for loop with the assistance of 
 
 I used a standard MIT license for this, which can be viewed below:
 
-INSERT GITHUB LINK
+* [https://github.com/RosemaryJF/password-generator/blob/main/assets/LICENSE](https://github.com/RosemaryJF/password-generator/blob/main/assets/LICENSE)
 
 ---
 
