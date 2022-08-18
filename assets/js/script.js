@@ -14,10 +14,10 @@ generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
   // Arrays for character options for password
-  var alphabet = ["abcdefghijklmnopqrstuvwxyz"];
-  var alphabetUppercase = alphabet.map(str => str.toUpperCase());
-  var numericCharacters = [1234567890];
-  var specialCharacters = ["~'!@#$%^&*()_-+={}[]|<>,.:;?/"];
+  var alphabet = "abcdefghijklmnopqrstuvwxyz";
+  var alphabetUppercase = alphabet.toUpperCase();
+  var numericCharacters = 1234567890;
+  var specialCharacters = "~'!@#$%^&*()_-+={}[]|<>,.:;?/";
   var userCharChoices = "";
   
   console.log(alphabet);
@@ -26,16 +26,20 @@ function generatePassword() {
   console.log(specialCharacters);
   console.log(userCharChoices);
   
-  //Window prompts to decide what arrays are to be included in password generation.
+  //Window prompt to user to pick a password length
   var passwordLength = window.prompt("Enter the number of characters you want the password to be (between 8-128).");
-    if (passwordLength === true)
     console.log(passwordLength);
-    else if (passwordLength === null) {
+     
+    if (passwordLength === null) {
       console.log ("Password generation has been cancelled.");
       window.alert("You have chosen to cancel the password generation.");
       return;
     }
-  
+      else if (passwordLength<8 || passwordLength>128) {
+          window.alert("Your character unit choice was invalid. Please start again")
+          return;
+        }
+
   var lowercase = window.confirm("Do you want to include lowercase letters?");
     if (lowercase === true) {
       console.log("Include lowercase alphabet")
@@ -73,47 +77,48 @@ function generatePassword() {
     window.alert("You must choose characters for your password. Password generation has been cancelled!");
   }
     else if (lowercase && uppercase && numbers && specialChars) {
-      userCharChoices = alphabet.concat(alphabetUppercase, numericCharacters, specialCharacters);
+      userCharChoices = alphabet + alphabetUppercase + numericCharacters + specialCharacters;
+      console.log(userCharChoices);
     }
 
     else if (lowercase && uppercase && numbers) {
-      userCharChoices = alphabet.concat(alphabetUppercase, numericCharacters);
+      userCharChoices = alphabet + alphabetUppercase + numericCharacters;
     }
 
     else if (lowercase && uppercase && specialChars) {
-      userCharChoices = alphabet.concat(alphabetUppercase, specialCharacters);
+      userCharChoices = alphabet + alphabetUppercase + specialCharacters;
     }
 
     else if (lowercase && numbers && specialChars) {
-      userCharChoices = alphabet.concat(numericCharacters, specialCharacters);
+      userCharChoices = alphabet + numericCharacters + specialCharacters;
     }
 
     else if (uppercase && numbers && specialChars) {
-      userCharChoices = alphabetUppercase.concat(numericCharacters, specialCharacters);
+      userCharChoices = alphabetUppercase + numericCharacters + specialCharacters;
     }
 
     else if (numbers && specialChars) {
-      userCharChoices = numericCharacters.concat(specialCharacters);
+      userCharChoices = numericCharacters + specialCharacters;
     }
 
     else if (lowercase && specialChars) {
-      userCharChoices = alphabet.concat(specialCharacters);
+      userCharChoices = alphabet + specialCharacters;
     }
 
     else if (uppercase && specialChars) {
-      userCharChoices = alphabetUppercase.concat(specialCharacters);
+      userCharChoices = alphabetUppercase + specialCharacters;
     }
 
     else if (lowercase && uppercase) {
-      userCharChoices = alphabet.concat(alphabetUppercase);
+      userCharChoices = alphabet + alphabetUppercase;
     }
 
     else if (lowercase && numbers) {
-      userCharChoices = alphabet.concat( numericCharacters);
+      userCharChoices = alphabet + numericCharacters;
     }
 
     else if (uppercase && numbers) {
-      userCharChoices = alphabetUppercase.concat(numericCharacters);
+      userCharChoices = alphabetUppercase + numericCharacters;
     }
 
     else if (lowercase) {
@@ -131,60 +136,16 @@ function generatePassword() {
     else if (specialCharacters) {
       userCharChoices = specialCharacters;
     }
-  
-  // if (passwordLength => 8 < 128);
-  //   else (!passwordLength);
 
-    //Random choosing of password characters
-    // var password = "";
-    // for (var i = 0; i < passwordLength; i++) {
-    //   //picks a character within charSet at index of random number
-    //   password = charSet.setCodeAt(Math.floor(Math.random() * charSet.length));
-    // }
-    // return password;
-
-
-
-  // var password = '';
-  //   for (var i = 0; i < passwordLength; i++) {
-  //     var passwordCharacters = Math.floor(Math.random() * passwordLength.length[i]);
-  //     console.log(password);
-  //    }
-     
-
-  // if (lowercase && uppercase && numberCharacters && specialLetters)
-
-  //   for (var i = 0; i < passwordLength; i++) {
-  //     passwordCharacters.push(Math.floor(Math.random() * passwordLength.length));
-  //     console.log(password);
-  //     }
-
-  // if (passwordLength === Number) {
-  //   userInput.push(Number);
-  // };
-
-  // if (lowercase === true) {
-  //   userInput.push(alphabet);
-  // };
-
-  // if (uppercase === true) {
-  //   userInput.push(alphabetUppercase);
-  // };
-
-  // if (numberCharacters === true) {
-  //   userInput.push(numericCharacters);
-  // };
-
-  // if (specialLetters === true) {
-  //   userInput.push(specialCharacters);
-  // };
-
-  
- 
-
-
+  var password = [];
     
-//   
+  // AskBCS helped me figure out issues with my for loop. Have detailed in README
+    for (i = 0; i < passwordLength; i++) {
+      var passwordNumbers = Math.floor(Math.random() * userCharChoices.length);
+      var passwordChars = userCharChoices.charAt(passwordNumbers);
+      console.log(passwordChars);
+      password.push(passwordChars);
+  } console.log(password);
 
-  // Add event listener to generate button
+  return password.join("");
 }
