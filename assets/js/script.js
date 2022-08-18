@@ -18,15 +18,13 @@ function generatePassword() {
   var alphabetUppercase = alphabet.map(str => str.toUpperCase());
   var numericCharacters = [1234567890];
   var specialCharacters = ["~'!@#$%^&*()_-+={}[]|<>,.:;?/"];
-  
-  // Concat of character options into one array
-  var charSet = alphabet.concat(alphabetUppercase, numericCharacters, specialCharacters);
+  var userCharChoices = "";
   
   console.log(alphabet);
   console.log(alphabetUppercase);
   console.log(numericCharacters);
   console.log(specialCharacters);
-  console.log(charSet);
+  console.log(userCharChoices);
   
   //Window prompts to decide what arrays are to be included in password generation.
   var passwordLength = window.prompt("Enter the number of characters you want the password to be (between 8-128).");
@@ -54,23 +52,85 @@ function generatePassword() {
         console.log ("Do not include uppercase alphabet");
       }
 
-    var numberCharacters = window.confirm("Do you want it to contain numbers?");
-    if (numberCharacters === true) {
+    var numbers = window.confirm("Do you want it to contain numbers?");
+    if (numbers === true) {
       console.log("Include numeric characters")
     }
-      else if (numberCharacters === false) {
+      else if (numbers === false) {
         console.log ("Do not include numeric characters");
       }
 
-  var specialLetters = window.confirm("Do you want it to contain special characters");
-    if (specialCharacters === true) {
+  var specialChars = window.confirm("Do you want it to contain special characters");
+    if (specialChars === true) {
       console.log("include special characters")
     }
-      else if (specialLetters === false) {
+      else if (specialChars === false) {
         console.log ("Do not include special characters");
       }
 
+  if (!lowercase && !uppercase && !numbers && !specialChars) {
+    console.log("Character selection null. Input needed.");
+    window.alert("You must choose characters for your password. Password generation has been cancelled!");
+  }
+    else if (lowercase && uppercase && numbers && specialChars) {
+      userCharChoices = alphabet.concat(alphabetUppercase, numericCharacters, specialCharacters);
+    }
 
+    else if (lowercase && uppercase && numbers) {
+      userCharChoices = alphabet.concat(alphabetUppercase, numericCharacters);
+    }
+
+    else if (lowercase && uppercase && specialChars) {
+      userCharChoices = alphabet.concat(alphabetUppercase, specialCharacters);
+    }
+
+    else if (lowercase && numbers && specialChars) {
+      userCharChoices = alphabet.concat(numericCharacters, specialCharacters);
+    }
+
+    else if (uppercase && numbers && specialChars) {
+      userCharChoices = alphabetUppercase.concat(numericCharacters, specialCharacters);
+    }
+
+    else if (numbers && specialChars) {
+      userCharChoices = numericCharacters.concat(specialCharacters);
+    }
+
+    else if (lowercase && specialChars) {
+      userCharChoices = alphabet.concat(specialCharacters);
+    }
+
+    else if (uppercase && specialChars) {
+      userCharChoices = alphabetUppercase.concat(specialCharacters);
+    }
+
+    else if (lowercase && uppercase) {
+      userCharChoices = alphabet.concat(alphabetUppercase);
+    }
+
+    else if (lowercase && numbers) {
+      userCharChoices = alphabet.concat( numericCharacters);
+    }
+
+    else if (uppercase && numbers) {
+      userCharChoices = alphabetUppercase.concat(numericCharacters);
+    }
+
+    else if (lowercase) {
+      userCharChoices = alphabet;
+    }
+
+    else if (uppercase) {
+      userCharChoices = alphabetUpper;
+    }
+
+    else if (numbers) {
+      userCharChoices = numericCharacters;
+    }
+
+    else if (specialCharacters) {
+      userCharChoices = specialCharacters;
+    }
   
   // if (passwordLength => 8 < 128);
   //   else (!passwordLength);
