@@ -4,82 +4,95 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+My motivation with developing a Random Password Generator was the necessity for increased security levels when accessing sensitive data.It solves the issue of reusing the same password over mutliple accounts, and due to randomised format means it doesn't necessarily follow strict pattern for character choice.
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+I learnt how to randomise character choice and how to push this to a browser page. I got practice at writing else if statements and, do feel like there is better way to do it but, at this point time I was unable to do this in the allocated timeline for the project.
 
 ---
 
 ## Table of Contents (Optional)
 
-If your README is long, add a table of contents to make it easy for users to find what they need.
-
-- [Installation](#installation)
 - [Usage](#usage)
-- [Credits & Resources](#credits&resources)
+- [Credits & Resources](#credits--resources)
 - [License](#license)
-
----
-
-## Installation
-
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+- [Problems & Resolutions](#problems--resolutions)
 
 ---
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+To start the random password generation click the "Generate Password button". You are then taken through a series of prompts.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+![Screenshot of default home page](./assets/images/homescreen.jpg)
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+The first prompt asks you to enter a password character length choice between 8-128. 
+
+![Screenshot of password length choice prompt box.](./assets/images/prompt-box01.jpg)
+
+If you enter an invalid option or hit the cancel box you are prompted with:
+
+![Screenshot of cancel/invalid prompts](./assets/images/cancel.jpg)
+
+If you enter a valid option you are met with these prompts in succession:
+
+![Screenshot of character choice prompts](./assets/images/window-prompts.jpg)
+
+Once you've made your choices the randomly generated password will appear in the box! 
+
+![Screenshot of password](./assets/images/password.jpg)
+
+To view the deployed application just follow the link below!
+
+INSERT GITHUB LINK
+
 ---
 
 ## Credits & Resources
 
-List your collaborators, if any, with links to their GitHub profiles.
+I used the following online resources to try and educate myself on different aspects of the code I was writing. This is not an exhaustive list.
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
+* [https://www.codegrepper.com/code-examples/javascript/how+to+console.log+a+random+item+from+an+array+javascript](https://www.codegrepper.com/code-examples/javascript/how+to+console.log+a+random+item+from+an+array+javascript)
+* [https://www.universalclass.com/articles/computers/javascript/user-input-and-output-in-javascript.htm](https://www.universalclass.com/articles/computers/javascript/user-input-and-output-in-javascript.htm)
+* [https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt](https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt)
+* [https://openjavascript.info/2022/03/14/random-password-generator-using-javascript/](https://openjavascript.info/2022/03/14/random-password-generator-using-javascript/)
+* [https://www.codegrepper.com/code-examples/javascript/how+to+console.log+a+random+item+from+an+array+javascript](https://www.codegrepper.com/code-examples/javascript/how+to+console.log+a+random+item+from+an+array+javascript)
+* [https://www.programiz.com/javascript/examples/generate-random-strings#:~:text=random()%20method%20is%20used,a%20random%20character%20is%20generated.](https://www.programiz.com/javascript/examples/generate-random-strings#:~:text=random()%20method%20is%20used,a%20random%20character%20is%20generated.)
 
-If you followed tutorials, include links to those here as well.
-
-https://www.codegrepper.com/code-examples/javascript/how+to+console.log+a+random+item+from+an+array+javascript
-https://www.universalclass.com/articles/computers/javascript/user-input-and-output-in-javascript.htm
-https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt
-https://openjavascript.info/2022/03/14/random-password-generator-using-javascript/
-https://www.codegrepper.com/code-examples/javascript/how+to+console.log+a+random+item+from+an+array+javascript
-https://www.programiz.com/javascript/examples/generate-random-strings#:~:text=random()%20method%20is%20used,a%20random%20character%20is%20generated.
+In addition to this I sought help to resolve my for loop with the assistance of AskBCS, the person explained the errors and what I could do correct them. This is detailed further below.
 
 ---
 
 ## License
 
+I used a standard MIT license for this, which can be viewed below:
 
+INSERT GITHUB LINK
 
 ---
 
-🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
+## Problems & Resolutions
 
-## Badges
+I had an issue with my final for statement which would determine the output of randomised characters. What I originally had is passted below:
 
-![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
+    var password = [];
+      
+    for (i = 0; i = passwordLength; i++); {
+        var passwordChars = Math.floor(Math.random() * userCharChoices.length[i]);
+        password.push(passwordChars);
+    }
 
-Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
+The problem with this code is it is simply outputting numbers and no characters, and was drawing on an unnesscary index. The final code used is:
 
-## Features
+    for (i = 0; i < passwordLength; i++) {
+      var passwordNumbers = Math.floor(Math.random() * userCharChoices.length);
+      var passwordChars = userCharChoices.charAt(passwordNumbers);
+        console.log(passwordChars);
+        password.push(passwordChars);
+    } console.log(password);
 
-If your project has a lot of features, list them here.
 
-## How to Contribute
+This sees the passwordNumbers varibale assigned to math floor, while the passwordChars variable is reassigned to a different solution.
 
-If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
+A final step was introduced at the bottom to push the password to the browser:
 
-## Tests
-
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
+    return password.join("");
